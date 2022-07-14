@@ -1,0 +1,6 @@
+{
+  "src/**/*.{jsx,js}": [
+    "eslint",
+    "madge --circular src/app/index.js"
+  ]
+}

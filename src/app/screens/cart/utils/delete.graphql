@@ -1,0 +1,100 @@
+mutation DELETE_CHECKOUT_LINE($checkoutId: ID!, $lineId: ID!, $languageCode: LanguageCodeEnum!) {
+  checkoutLineDelete(checkoutId: $checkoutId, lineId: $lineId) {
+    checkout {
+      subtotalPrice {
+        currency
+        gross {
+          amount
+        }
+        net {
+          amount
+        }
+        tax {
+          amount
+        }
+      }
+      discount {
+        amount
+      }
+      shippingPrice {
+        gross {
+          amount
+        }
+      }
+      totalPrice {
+        gross {
+          amount
+        }
+      }
+      lines {
+        id
+        quantity
+        variant {
+          id
+          sku
+          name
+          translation(languageCode: $languageCode) {
+            name
+          }
+          quantityAvailable
+          attributes {
+            values {
+              id
+              name
+              translation(languageCode: $languageCode) {
+                name
+              }
+            }
+            attribute {
+              id
+              name
+              translation(languageCode: $languageCode) {
+                name
+              }
+              values {
+                id
+                name
+                translation(languageCode: $languageCode) {
+                  name
+                }
+              }
+            }
+          }
+          product {
+            id
+            slug
+            name
+            translation(languageCode: $languageCode) {
+              name
+            }
+            thumbnail(size: 510) {
+              url
+            }
+          }
+          pricing {
+            price {
+              currency
+              gross {
+                amount
+              }
+              net {
+                amount
+              }
+              tax {
+                amount
+              }
+            }
+          }
+          images {
+            id
+            url
+          }
+        }
+      }
+    }
+    checkoutErrors {
+      field
+      message
+    }
+  }
+}

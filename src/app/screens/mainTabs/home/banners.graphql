@@ -1,0 +1,23 @@
+query GET_PROMOTIONS ($languageCode: LanguageCodeEnum!) {
+  promotionPlaceholders {
+    id
+    name
+    codename
+    promotion {
+      id
+      url
+      title
+      isActive
+      buttonText
+      description
+      translation(languageCode: $languageCode){
+        title
+        buttonText
+        description
+      }
+      bannerImage {
+        url
+      }
+    }
+  }
+}

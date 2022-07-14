@@ -1,0 +1,51 @@
+query Favourites ($first: Int, $cursor: String, $languageCode: LanguageCodeEnum! ) {
+  me {
+    wishlist(first: $first, after: $cursor) {
+      totalCount
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          id
+          product {
+            translation(languageCode: $languageCode) {
+              name
+            }
+            name
+            id
+            thumbnail(size: 510) {
+              url
+            }
+            pricing {
+              onSale
+              priceRange {
+                start {
+                  currency
+                  gross {
+                    amount
+                  }
+                }
+                stop {
+                  currency
+                  gross {
+                    amount
+                  }
+                }
+              }
+              priceRangeUndiscounted {
+                stop {
+                  currency
+                  gross {
+                    amount
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

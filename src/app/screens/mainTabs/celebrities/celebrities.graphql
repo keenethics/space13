@@ -1,0 +1,24 @@
+query Celebrities($first: Int, $cursor: String, $search: String, $languageCode: LanguageCodeEnum!) {
+  celebrities (first: $first, after: $cursor, filter: { search: $search }) {
+    totalCount,
+    pageInfo {
+      endCursor,
+      hasNextPage
+    },
+    edges {
+      node {
+        id,
+        firstName,
+        lastName,
+        translation(languageCode: $languageCode) {
+          firstName
+          lastName
+        }
+        avatar {
+          url
+        }
+      }
+    }
+  }
+}
+

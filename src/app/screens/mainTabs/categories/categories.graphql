@@ -1,0 +1,51 @@
+query Categories($first: Int, $cursor: String, $level: Int, $languageCode: LanguageCodeEnum!) {
+  collections(first: 70, filter: { published: PUBLISHED }) {
+    edges {
+      node {
+        id,
+        translation(languageCode: $languageCode) {
+          name
+        }
+        name
+        slug
+        backgroundImage{
+          url
+        }
+        publicationDate
+        description
+      }
+    }
+  }
+  categories (first: $first, after: $cursor, level: $level) {
+    totalCount,
+    pageInfo {
+      endCursor,
+      hasNextPage
+    },
+    edges {
+      node {
+        parent {
+          id
+        }
+        id,
+        translation(languageCode: $languageCode) {
+          name
+        }
+        name,
+        description,
+        slug,
+        promoImage {
+          url
+        }
+        level
+        backgroundImage{
+          url
+        }
+        children {
+          totalCount
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,152 @@
+query PRODUCT ($id: ID, $languageCode: LanguageCodeEnum!) {
+  product(id: $id) {
+    id
+    name
+    seoTitle
+    slug
+    seoDescription
+    isVip
+    isAvailable
+    descriptionJson
+    inWishlist
+    discountPercent
+    isVip
+    translation(languageCode: $languageCode) {
+      name
+      descriptionJson
+      seoTitle
+      seoDescription
+    }
+    variants {
+      id
+      sku
+      name
+      translation(languageCode: $languageCode) {
+        name
+      }
+      discountPercent
+      quantityAvailable
+      attributes {
+        values {
+          translation(languageCode: $languageCode) {
+            name
+          }
+          name
+          id
+          image {
+            url
+          }
+        }
+        attribute {
+          translation(languageCode: $languageCode) {
+            name
+          }
+          name
+          id
+        }
+      }
+      pricing {
+        onSale
+        priceUndiscounted {
+          gross {
+            amount
+          }
+        }
+        price {
+          currency
+          gross {
+            amount
+          }
+          net {
+            amount
+          }
+          tax {
+            amount
+          }
+        }
+      }
+      images {
+        id
+        url
+      }
+    }
+    attributes {
+      values {
+        id
+        name
+        translation(languageCode: $languageCode) {
+          name
+        }
+      }
+      attribute {
+        id
+        name
+        translation(languageCode: $languageCode) {
+          name
+        }
+        values {
+          id
+          name
+          translation(languageCode: $languageCode) {
+            name
+          }
+        }
+      }
+    }
+    category {
+      id
+      slug
+      name
+      translation(languageCode: $languageCode) {
+        name
+      }
+      ancestors(last: 5) {
+        edges {
+          node {
+            id
+            translation(languageCode: $languageCode) {
+              name
+            }
+            name
+            slug
+          }
+        }
+      }
+    }
+    pricing {
+      onSale
+      priceRangeUndiscounted {
+        start {
+          currency
+          gross {
+            amount
+          }
+        }
+        stop {
+          gross {
+            amount
+          }
+        }
+      }
+      priceRange {
+        start {
+          currency
+          gross {
+            amount
+          }
+        }
+        stop {
+          gross {
+            amount
+          }
+        }
+      }
+    }
+    images {
+      url
+    }
+    thumbnail {
+      url
+    }
+  }
+}

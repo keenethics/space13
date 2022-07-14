@@ -1,0 +1,29 @@
+query DESIGNER ($id: ID!,  $languageCode: LanguageCodeEnum! ){
+  designer(id: $id) {
+    id
+    avatar {
+      url
+    }
+    firstName
+    lastName
+    translation(languageCode: $languageCode) {
+      firstName
+      lastName
+    }
+    socialMedias {
+      type
+      url
+    }
+    designer {
+      coverImage {
+        url
+      }
+      translation(languageCode: $languageCode) {
+        description
+        brand
+      }
+      description
+      brand
+    }
+  }
+}

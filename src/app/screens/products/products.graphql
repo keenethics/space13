@@ -1,0 +1,54 @@
+query Products($first: Int, $cursor: String, $filter: ProductFilterInput, $sortBy: ProductOrder, $languageCode: LanguageCodeEnum!) {
+  products (first: $first, after: $cursor, sortBy: $sortBy, filter: $filter ) {
+    totalCount,
+    pageInfo {
+      endCursor,
+      hasNextPage
+    },
+    edges {
+      node {
+        id
+        slug
+        translation(languageCode: $languageCode) {
+          name
+        }
+        name
+        updatedAt
+        inWishlist
+        isVip
+        thumbnail(size: 510) {
+          url
+        }
+        minimalVariantPrice {
+          amount
+        }
+        pricing {
+          onSale
+          priceRange {
+            start {
+              currency
+              gross {
+                amount
+              }
+            }
+            stop {
+              currency
+              gross {
+                amount
+              }
+            }
+          }
+          priceRangeUndiscounted {
+            stop {
+              currency
+              gross {
+                amount
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,29 @@
+query Designers($first: Int, $cursor: String, $search: String, $languageCode: LanguageCodeEnum!) {
+  designers (first: $first, after: $cursor, filter: { search: $search }) {
+    totalCount,
+    pageInfo {
+      endCursor,
+      hasNextPage
+    },
+    edges {
+      node {
+        id,
+        firstName,
+        lastName,
+        translation(languageCode: $languageCode) {
+          firstName
+          lastName
+        }
+        designer {
+          brand
+          translation(languageCode: $languageCode) {
+            brand
+          }
+        }
+        avatar {
+          url
+        }
+      }
+    }
+  }
+}
